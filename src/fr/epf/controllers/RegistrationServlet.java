@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.epf.daos.AdresseDao;
 import fr.epf.daos.UserDao;
 import fr.epf.models.Adresse;
 import fr.epf.models.User;
@@ -23,6 +24,9 @@ public class RegistrationServlet extends HttpServlet {
 	
 	@Inject
 	private UserDao userDao;
+	
+	@Inject
+	private AdresseDao adresseDao;
 	
 	public RegistrationServlet() {
 	}
@@ -41,6 +45,7 @@ public class RegistrationServlet extends HttpServlet {
 		User u = parseUser(req);
 		req.getSession().setAttribute("user", u);
 		Adresse a = parseAdresse(req);
+		adresseDao.save(a);
 		u.setAdresse(a);
 		incrementLiveUserCount();
 		userDao.save(u);
