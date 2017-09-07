@@ -1,4 +1,4 @@
-package fr.epf.daos;
+package io.resourcepool.daos;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.epf.models.User;
+import io.resourcepool.models.User;
 
 @Singleton
 public class UserDao {
@@ -22,8 +22,14 @@ public class UserDao {
 		return em.find(User.class, id);
 	}
 	
+	public Long count() {
+		return (Long) em.createQuery("SELECT COUNT(*) FROM User").getSingleResult();
+	}
+	
 	public List<User> findAll() {
-		return em.createQuery("SELECT id, firstName, lastName FROM User").getResultList();
+		//TODO add the join whith adress and cellphone
+		//make sure the table name is composed with a capital letter
+		return (List<User>) em.createQuery("FROM User").getResultList();
 	}
 
 }

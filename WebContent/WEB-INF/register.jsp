@@ -8,21 +8,16 @@
 		<title>Registration</title>
 	</head>
 	<body>
-		<div id="login-container">
+		<div id="login-container" >
 			<h1>Registration</h1>
 			<form action="register" method="POST">
 				<input type="text" name="firstName" placeholder="First Name"/>
 				<br/>
 				<input type="text" name="lastName" placeholder="Last Name"/>
 				<br/>
-				<input type="text" name="adresse_domicile" placeholder="Adresse domicile"/>
+				<input type="text" name="adresse_domicile" placeholder="Local adress"/>
 				<br/>
-				<input type="text" name="country_domicile" placeholder="Country domicile"/>
-				<br/>
-				
-				<input type="text" name="adresse_pro" placeholder="Adresse"/>
-				<br/>
-				<input type="text" name="country_pro" placeholder="Country"/>
+				<input type="text" name="adresse_pro" placeholder="Professional adress"/>
 				<br/>
 				<input type="submit" class="btn" value="Register"/>
 			</form>

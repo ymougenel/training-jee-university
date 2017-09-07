@@ -1,4 +1,4 @@
-package fr.epf.daos;
+package io.resourcepool.daos;
 
 import java.util.List;
 
@@ -6,23 +6,24 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.epf.models.Adresse;
+import io.resourcepool.models.Adress;
 
 @Singleton
-public class AdresseDao {
+public class AdressDao {
 	
 	@PersistenceContext
 	private EntityManager em;
 	
-	public void save(Adresse u) {
+	public void save(Adress u) {
 		em.persist(u);
 	}
 
-	public Adresse findOne(Long id) {
-		return em.find(Adresse.class, id);
+	public Adress findOne(Long id) {
+		return em.find(Adress.class, id);
 	}
 	
-	public List<Adresse> findAll() {
+	public List<Adress> findAll() {
+		//make sure the table name is composed with a capital letter
 		return em.createQuery("SELECT id, firstName, lastName FROM Adresse").getResultList();
 	}
 

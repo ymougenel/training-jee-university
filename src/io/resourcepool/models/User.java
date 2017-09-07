@@ -1,8 +1,10 @@
-package fr.epf.models;
+package io.resourcepool.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,14 +19,25 @@ public class User {
 	private String firstName;
 	private String lastName;
 	
-	@OneToMany(mappedBy = "user")
-	private List<Adresse> adresse;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	private List<Adress> adresse;
 	
-	public User() {
+	@OneToOne (fetch = FetchType.LAZY, mappedBy = "owner")
+	private Cellphone cellphone;
+	
+	
+	//a default constructor is important for Hibernate usage
+	public User() {}
+	
+	public Cellphone getCellphone() {
+		return cellphone;
 	}
-	
+
+	public void setCellphone(Cellphone cellphone) {
+		this.cellphone = cellphone;
+	}
+
 	public User(String firstName, String lastName) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
@@ -49,12 +62,13 @@ public class User {
 		this.id = id;
 	}
 
-	public List<Adresse> getAdresse() {
+	public List<Adress> getAdresse() {
 		return adresse;
 	}
 
-	public void setAdresse(List<Adresse> adresse) {
+	public void setAdresse(List<Adress> adresse) {
 		this.adresse = adresse;
 	}
+
 	
 }

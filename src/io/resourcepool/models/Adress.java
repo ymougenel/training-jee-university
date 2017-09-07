@@ -1,4 +1,4 @@
-package fr.epf.models;
+package io.resourcepool.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,34 +7,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Adresse {
+public class Adress {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	// Address has been badly named, we therefore use a different column name
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
 
-	@Column(name="location")
+	@Column(name="location") //Use a different database name for the attribute
 	private String adresse;
 	
-	private String country;
+	//private String country;
 	
-	@Override
-	public String toString() {
-		return adresse + " " + country;
-	}
 	
-	public Adresse() {}
+	public Adress() {}
 	
-	public Adresse(String location, String country) {
+	
+	public Adress(String location) {
 		this.adresse = location;
-		this.country = country;
+		//this.country = country;
 	}
 	
 	
