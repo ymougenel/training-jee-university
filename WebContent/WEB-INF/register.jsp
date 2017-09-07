@@ -15,9 +15,14 @@
 				<br/>
 				<input type="text" name="lastName" placeholder="Last Name"/>
 				<br/>
-				<input type="text" name="adresse" placeholder="Adresse"/>
+				<input type="text" name="adresse_domicile" placeholder="Adresse domicile"/>
 				<br/>
-				<input type="text" name="country" placeholder="Country"/>
+				<input type="text" name="country_domicile" placeholder="Country domicile"/>
+				<br/>
+				
+				<input type="text" name="adresse_pro" placeholder="Adresse"/>
+				<br/>
+				<input type="text" name="country_pro" placeholder="Country"/>
 				<br/>
 				<input type="submit" class="btn" value="Register"/>
 			</form>

@@ -1,9 +1,12 @@
 package fr.epf.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -14,8 +17,8 @@ public class User {
 	private String firstName;
 	private String lastName;
 	
-	@OneToOne
-	private Adresse adresse;
+	@OneToMany(mappedBy = "user")
+	private List<Adresse> adresse;
 	
 	public User() {
 	}
@@ -46,11 +49,11 @@ public class User {
 		this.id = id;
 	}
 
-	public Adresse getAdresse() {
+	public List<Adresse> getAdresse() {
 		return adresse;
 	}
 
-	public void setAdresse(Adresse adresse) {
+	public void setAdresse(List<Adresse> adresse) {
 		this.adresse = adresse;
 	}
 	

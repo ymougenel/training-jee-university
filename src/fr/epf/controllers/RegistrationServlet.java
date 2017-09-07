@@ -44,9 +44,11 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User u = parseUser(req);
 		req.getSession().setAttribute("user", u);
-		Adresse a = parseAdresse(req);
-		adresseDao.save(a);
-		u.setAdresse(a);
+		List<Adresse> adresses= parseAdresses(req);
+		for (Adresse adresse : adresses) {
+			adresseDao.save(adresse);
+		}
+		u.setAdresse(adresses);
 		incrementLiveUserCount();
 		userDao.save(u);
 		resp.sendRedirect("dashboard");
@@ -61,11 +63,16 @@ public class RegistrationServlet extends HttpServlet {
 		return new User(firstName, lastName);
 	}
 	
-	private Adresse parseAdresse(HttpServletRequest req) {
-		String adresse = req.getParameter("adresse");
-		String country = req.getParameter("country");
-		
-		return new Adresse(adresse, country);
+	private List<Adresse> parseAdresses(HttpServletRequest req) {
+		String adresse = req.getParameter("adresse_domicile");
+		String country = req.getParameter("country_domicile");
+		String adressePro = req.getParameter("adresse_pro");
+		String countryPro = req.getParameter("country_pro");
+		List<Adresse> adresses = new ArrayList();
+		adresses.add(new Adresse(adresse,country));
+		adresses.add(new Adresse(adressePro,countryPro));
+
+		return adresses;
 	}
 	private void incrementLiveUserCount() {
 		Integer liveUserCount = (Integer) getServletContext().getAttribute("liveUserCount");
